@@ -45,7 +45,7 @@ describe('[Görev 5] Mevsimler', () => {
 describe('[Görev 6] Araba', () => {
   let focus
   beforeEach(() => {
-    focus = new utils.Car('focus', 20, 30) // her test yeni bir araba oluşturur
+    focus = new utils.Araba('focus', 20, 30) // her test yeni bir araba oluşturur
   })
   // test('[15] arabayı sürünce güncellenmiş odometer döndürüyor', () => {})
   // test('[16] arabayı sürmek benzin tüketiyor', () => {})
