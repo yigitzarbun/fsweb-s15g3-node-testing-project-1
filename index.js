@@ -25,8 +25,12 @@ function nesneyiTrimle(obj) {
  */
 function verileniTrimle(obj, prop) {
   // ✨ kodlar buraya
-  let trimmedProp = obj[prop].trim();
-  obj[prop] = trimmedProp;
+
+  for (x in obj) {
+    if (x == prop) {
+      obj[x] = obj[x].trim();
+    }
+  }
   return obj;
 }
 //console.log(verileniTrimle({ isim: "  jane  ", yas: " 34 " }, "isim"));
@@ -78,7 +82,8 @@ function Sayici(ilkSayi) {
    */
   this.asagiSay = () => {
     // ✨ kodlar buraya
-    let guncelSayac = (this.sayac -= 1);
+    let guncelSayac = this.sayac;
+    this.sayac -= 1;
     guncelSayac < 0 ? (guncelSayac = 0) : (guncelSayac = guncelSayac);
     return guncelSayac;
   };
@@ -90,8 +95,7 @@ console.log(sayac.asagiSay());
 console.log(sayac.asagiSay());
 console.log(sayac.asagiSay());
 console.log(sayac.asagiSay());
-*/
-
+ */
 function Mevsimler() {
   /**
    * [Görev 5A] Mevsimler , bir mevsimler nesnesi oluşturur
@@ -114,14 +118,14 @@ function Mevsimler() {
    */
   this.sonraki = () => {
     // ✨ kodlar buraya
-    let guncelMevsim = (mevsim += 1);
+    let guncelMevsim = mevsim;
+    mevsim += 1;
     guncelMevsim > 3
       ? (guncelMevsim = guncelMevsim % 4)
       : (guncelMevsim = guncelMevsim);
     return mevsimler[guncelMevsim];
   };
 }
-
 /*
 const mevsimler = new Mevsimler();
 console.log(mevsimler.sonraki());
@@ -130,7 +134,6 @@ console.log(mevsimler.sonraki());
 console.log(mevsimler.sonraki());
 console.log(mevsimler.sonraki());
 */
-
 function Araba(isim, depoBenzin, kml) {
   /**
    * [Görev 6A] Araba 3 argüman alarak bir araba nesnesi oluşturur

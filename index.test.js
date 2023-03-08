@@ -14,9 +14,10 @@ describe("[Görev 2] verileniTrimle", () => {
   // test('[3] verilen propu trimliyor', () => {})
   // test('[4] verilen dışındaki proplar trimlenmeden döndürülüyor', () => {})
   test("[3] verilen propu trimliyor", () => {
-    const input = ({ isim: "  jane  ", yas: " 34 " }, "isim");
+    const obj = { isim: "  jane  ", yas: " 34 " };
+    const prop = "isim";
     const expected = { isim: "jane", yas: " 34 " };
-    const actual = utils.verileniTrimle(input);
+    const actual = utils.verileniTrimle(obj, prop);
     expect(actual).toEqual(expected);
   });
   test("[4] verilen dışındaki proplar trimlenmeden döndürülüyor", () => {
@@ -52,18 +53,19 @@ describe("[Görev 4] Sayici", () => {
   });
   test("[7] sayici.asagiSay İKİNCİ çağırılışında başlangıç eksi 1 sayıyor", () => {
     const expected = 2;
-    sayici.asagiSay();
-    sayici.asagiSay();
-    expect(sayici).toBe(expected);
+    let result;
+    for (let i = 0; i < 2; i++) {
+      result = sayici.asagiSay();
+    }
+    expect(result).toBe(expected);
   });
   test("[8] sayıcı sonunda sıfıra ulaşır ama daha aşağı saymaz", () => {
     const expected = 0;
-    sayici.asagiSay();
-    sayici.asagiSay();
-    sayici.asagiSay();
-    sayici.asagiSay();
-    sayici.asagiSay();
-    expect(sayici).toBe(expected);
+    let result;
+    for (let i = 0; i < 10; i++) {
+      result = sayici.asagiSay();
+    }
+    expect(result).toBe(expected);
   });
 });
 
@@ -80,45 +82,45 @@ describe("[Görev 5] Mevsimler", () => {
   // test('[14] mevsimler.sonraki KIRKINCI çağırılışında "ilkbahar" döndürüyor', () => {})
   test("[9] mevsimler.sonraki İLK çağırılışında 'yaz' döndürüyor", () => {
     const expected = "yaz";
-    mevsimler.sonraki();
-    expect(mevsimler).toBe(expected);
+    let result = mevsimler.sonraki();
+    expect(result).toBe(expected);
   });
   test("[10] mevsimler.sonraki İKİNCİ çağırılışında 'sonbahar' döndürüyor", () => {
     const expected = "sonbahar";
-    mevsimler.sonraki();
-    mevsimler.sonraki();
-    expect(mevsimler).toBe(expected);
+    let result = mevsimler.sonraki();
+    let result2 = mevsimler.sonraki();
+    expect(result2).toBe(expected);
   });
   test("[11] mevsimler.sonraki ÜÇÜNCÜ çağırılışında 'kış' döndürüyor", () => {
     const expected = "kış";
-    mevsimler.sonraki();
-    mevsimler.sonraki();
-    mevsimler.sonraki();
-    expect(mevsimler).toBe(expected);
+    let result = mevsimler.sonraki();
+    let result2 = mevsimler.sonraki();
+    let result3 = mevsimler.sonraki();
+    expect(result3).toBe(expected);
   });
   test("[12] mevsimler.sonraki DÖRDÜNCÜ çağırılışında 'ilkbahar' döndürüyor", () => {
     const expected = "ilkbahar";
-    mevsimler.sonraki();
-    mevsimler.sonraki();
-    mevsimler.sonraki();
-    mevsimler.sonraki();
-    expect(mevsimler).toBe(expected);
+    let result = mevsimler.sonraki();
+    let result2 = mevsimler.sonraki();
+    let result3 = mevsimler.sonraki();
+    let result4 = mevsimler.sonraki();
+    expect(result4).toBe(expected);
   });
   test("[13] mevsimler.sonraki BEŞİNCİ çağırılışında 'yaz' döndürüyor", () => {
     const expected = "yaz";
-    mevsimler.sonraki();
-    mevsimler.sonraki();
-    mevsimler.sonraki();
-    mevsimler.sonraki();
-    mevsimler.sonraki();
-    expect(mevsimler).toBe(expected);
+    let result;
+    for (let i = 0; i < 5; i++) {
+      result = mevsimler.sonraki();
+    }
+    expect(result).toBe(expected);
   });
   test("[14] mevsimler.sonraki KIRKINCI çağırılışında 'ilkbahar' döndürüyor", () => {
     const expected = "ilkbahar";
-    for (let i = 0; i < 41; i++) {
-      mevsimler.sonraki();
+    let result;
+    for (let i = 0; i < 40; i++) {
+      result = mevsimler.sonraki();
     }
-    expect(mevsimler).toBe(expected);
+    expect(result).toBe(expected);
   });
 });
 
