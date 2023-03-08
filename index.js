@@ -26,10 +26,17 @@ function nesneyiTrimle(obj) {
 function verileniTrimle(obj, prop) {
   // ✨ kodlar buraya
 
+  /*
   for (x in obj) {
     if (x == prop) {
       obj[x] = obj[x].trim();
     }
+  }
+  return obj;
+  */
+
+  if (typeof obj[prop] === "string") {
+    obj[prop] = obj[prop].trim();
   }
   return obj;
 }
@@ -162,11 +169,10 @@ function Araba(isim, depoBenzin, kml) {
    */
   this.sur = (gidilecekyol) => {
     // ✨ kodlar buraya
-    let maxYol = this.depo * this.kml;
+    let maxYol = depoBenzin * this.kml;
     let gidilenYol = (this.odometer += gidilecekyol);
-    this.depo -= gidilenYol * this.odometer;
     gidilenYol > maxYol ? (gidilenYol = maxYol) : (gidilenYol = gidilenYol);
-
+    this.depo -= gidilenYol / kml;
     return gidilenYol;
   };
 
@@ -188,7 +194,6 @@ function Araba(isim, depoBenzin, kml) {
     return this.kml * this.depo;
   };
 }
-
 /*
 const focus = new Araba("focus", 20, 30);
 console.log(focus.sur(100)); // 100 döndürür

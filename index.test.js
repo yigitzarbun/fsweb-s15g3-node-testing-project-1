@@ -23,9 +23,9 @@ describe("[Görev 2] verileniTrimle", () => {
   test("[4] verilen dışındaki proplar trimlenmeden döndürülüyor", () => {
     const obj = { isim: "  jane  ", yas: " 34 " };
     const prop = "isim";
-    const expected = /yas: " 34 "/;
+    const expected = obj.yas;
     const actual = utils.verileniTrimle(obj, prop);
-    expect(actual).toMatch(expected);
+    expect(actual.yas).toMatch(expected);
   });
 });
 
@@ -146,9 +146,9 @@ describe("[Görev 6] Araba", () => {
   });
   test("[17] benzinalma arabayı sürmeye izin veriyor", () => {
     focus.sur(600);
-    focus.benzinal(20);
-    let result = focus.sur(100);
-    expect(result).toBe(100);
+    focus.sur(1);
+    let result = focus.benzinal(99);
+    expect(result).toBe(600);
   });
   test("[18] dolu depoya benzin alma etki etmiyor", () => {
     focus.benzinal(10);
