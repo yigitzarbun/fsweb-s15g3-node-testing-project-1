@@ -164,7 +164,9 @@ function Araba(isim, depoBenzin, kml) {
     // ✨ kodlar buraya
     let maxYol = this.depo * this.kml;
     let gidilenYol = (this.odometer += gidilecekyol);
+    this.depo -= gidilenYol * this.odometer;
     gidilenYol > maxYol ? (gidilenYol = maxYol) : (gidilenYol = gidilenYol);
+
     return gidilenYol;
   };
 
@@ -181,11 +183,9 @@ function Araba(isim, depoBenzin, kml) {
    */
   this.benzinal = (litre) => {
     // ✨ kodlar buraya
-    let guncelDepo = (this.depo += litre);
-    guncelDepo > depoBenzin
-      ? (guncelDepo = depoBenzin)
-      : (guncelDepo = guncelDepo);
-    return this.kml * guncelDepo;
+    this.depo += litre;
+    this.depo > depoBenzin ? (this.depo = depoBenzin) : (this.depo = this.depo);
+    return this.kml * this.depo;
   };
 }
 

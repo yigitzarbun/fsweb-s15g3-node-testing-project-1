@@ -21,9 +21,10 @@ describe("[Görev 2] verileniTrimle", () => {
     expect(actual).toEqual(expected);
   });
   test("[4] verilen dışındaki proplar trimlenmeden döndürülüyor", () => {
-    const input = ({ isim: "  jane  ", yas: " 34 " }, "isim");
+    const obj = { isim: "  jane  ", yas: " 34 " };
+    const prop = "isim";
     const expected = /yas: " 34 "/;
-    const actual = utils.verileniTrimle(input);
+    const actual = utils.verileniTrimle(obj, prop);
     expect(actual).toMatch(expected);
   });
 });
@@ -135,22 +136,23 @@ describe("[Görev 6] Araba", () => {
   // test('[18] dolu depoya benzin alma etki etmiyor', () => {})
   test("[15] arabayı sürünce güncellenmiş odometer döndürüyor", () => {
     const expected = 100;
-    focus.sur(100);
-    expect(Araba).toBe(100);
+    let result = focus.sur(100);
+    expect(result).toBe(100);
   });
   test("[16] arabayı sürmek benzin tüketiyor", () => {
-    focus.sur(100);
-    expect(Araba.depo).toBeLessThan(20);
+    let mesafe = focus.sur(100);
+    let depo = focus.depo;
+    expect(depo).toBeLessThan(20);
   });
   test("[17] benzinalma arabayı sürmeye izin veriyor", () => {
     focus.sur(600);
-    focus.benzinAl(20);
-    focus.sur(100);
-    expect(Araba).toBe(100);
+    focus.benzinal(20);
+    let result = focus.sur(100);
+    expect(result).toBe(100);
   });
   test("[18] dolu depoya benzin alma etki etmiyor", () => {
-    focus.benzinAl(20);
-    expect(Araba.depo).toBe(20);
+    focus.benzinal(10);
+    expect(focus.depo).toBe(20);
   });
 });
 
