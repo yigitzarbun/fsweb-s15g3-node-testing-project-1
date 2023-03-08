@@ -146,9 +146,9 @@ describe("[Görev 6] Araba", () => {
   });
   test("[17] benzinalma arabayı sürmeye izin veriyor", () => {
     focus.sur(600);
-    focus.sur(1);
-    let result = focus.benzinal(99);
-    expect(result).toBe(600);
+    focus.benzinal(20);
+    focus.sur(100);
+    expect(focus.odometer).toBe(700);
   });
   test("[18] dolu depoya benzin alma etki etmiyor", () => {
     focus.benzinal(10);
